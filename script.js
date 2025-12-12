@@ -10,9 +10,6 @@ const updateInfoEl = document.getElementById('update-info');
 
 /**
  * 根據天氣描述返回對應的 Emoji icon。
- * 使用科技感 Emoji 或調整樣式 (CSS 處理了霓虹光)
- * @param {string} weatherText 天氣狀況文字
- * @returns {string} 對應的 Emoji
  */
 function getWeatherIcon(weatherText) {
     if (weatherText.includes('晴')) return '🌞';
@@ -27,7 +24,7 @@ function getWeatherIcon(weatherText) {
 /**
  * 根據時間判斷時段文字 (科技描述)。
  * @param {string} startTime ISO 格式時間字串
- * @returns {string} 時段描述 (如：清晨數據流、日間核心數據)
+ * @returns {string} 時段描述
  */
 function getTimePeriod(startTime) {
     // 將 YYYY-MM-DD HH:MM:SS 格式轉換為 Date 物件
@@ -94,7 +91,8 @@ function renderFutureForecasts(forecasts) {
  * 抓取 API 資料並渲染網頁。
  */
 async function fetchWeather() {
-    loadingEl.style.display = 'block';
+    // **確保這裡的載入元素被設定為 block**
+    loadingEl.style.display = 'block'; 
     errorEl.style.display = 'none';
     mainForecastEl.style.display = 'none';
     futureForecastsEl.style.display = 'none';
@@ -130,7 +128,8 @@ async function fetchWeather() {
 
     } catch (error) {
         console.error('抓取天氣資料失敗:', error);
-        errorEl.textContent = `🚫 數據流中斷: ${error.message}，請檢查 API 連結。`;
+        // **確保這裡的錯誤訊息也是科技風格**
+        errorEl.textContent = `🚫 數據流中斷: ${error.message}，請檢查 API 連結。`; 
         errorEl.style.display = 'block';
     } finally {
         loadingEl.style.display = 'none';
