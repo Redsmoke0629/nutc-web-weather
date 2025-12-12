@@ -33,7 +33,7 @@ function getTimePeriod(startTime) {
 
     if (hour >= 6 && hour < 12) return '🌅 數據啟動: 清晨';
     if (hour >= 12 && hour < 18) return '🏙️ 日間天氣數據';
-    if (hour >= 18 || hour < 6) return '🌃 夜間天氣傳輸';
+    if (hour >= 18 || hour < 6) return '🌃 夜間天氣數據';
     return '時段訊號';
 }
 
@@ -55,7 +55,7 @@ function renderMainForecast(forecast, periodText) {
             </p>
         </div>
         <div class="comfort-text">
-            [系統回饋] 舒適度分析：${forecast.comfort}
+            🖥️[系統回饋] 舒適度分析：${forecast.comfort}
         </div>
     `;
     mainForecastEl.style.display = 'flex';
@@ -111,7 +111,7 @@ async function fetchWeather() {
 
             // 1. 設置城市名稱和更新時間
             cityNameEl.textContent = `${data.city} 天氣數據`;
-            updateInfoEl.textContent = `[系統] 氣象數據更新頻率：${data.updateTime}`;
+            updateInfoEl.textContent = `🖥️[系統] 氣象數據更新頻率：${data.updateTime}`;
             updateInfoEl.style.display = 'block';
             
             // 2. 渲染主要時段 (第一個)
