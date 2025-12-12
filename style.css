@@ -1,184 +1,213 @@
-/* CSS 樣式 - 水墨畫風格與 RWD 支援 */
+/* 未來科技風 CSS 樣式 */
 
-/* 1. 變數定義：水墨畫配色 */
+/* 1. 變數定義：科技風配色 */
 :root {
-    --ink-black: #1E1E1E; /* 墨黑 */
-    --ink-gray: #6C757D; /* 淡墨灰 */
-    --ink-white: #F8F9FA; /* 宣紙白 */
-    --accent-color: #A9A9A9; /* 點綴的灰色或淺藍 */
-    --highlight-bg: #EAECEF; /* 突顯背景，像宣紙上的淡彩 */
-    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1); /* 輕微陰影 */
+    --bg-dark: #0A0F1A;     /* 深邃午夜藍背景 */
+    --accent-neon: #00FFFF;  /* 霓虹青色 */
+    --accent-blue: #0077FF;  /* 數據藍 */
+    --text-light: #E0FFFF;   /* 亮白文字 */
+    --error-red: #FF44AA;    /* 警告紅 */
+    --glass-color: rgba(0, 255, 255, 0.1); /* 磨砂玻璃基底 */
+    --glass-border: rgba(0, 255, 255, 0.3); /* 磨砂玻璃邊框 */
 }
 
-/* 2. 網頁整體樣式 (宣紙背景) */
+/* 2. 網頁整體樣式 */
 body {
-    font-family: 'Noto Serif TC', serif; /* 主要使用水墨風格字體 */
-    background-color: var(--ink-white);
-    color: var(--ink-black);
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
     margin: 0;
-    padding: 20px;
+    padding: 30px 10px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 1.6;
-    /* 模擬宣紙的紋理 */
-    background-image: radial-gradient(var(--ink-gray) 1px, transparent 0);
-    background-size: 40px 40px; 
+    line-height: 1.5;
+    /* 點狀矩陣背景 */
+    background-image: 
+        radial-gradient(var(--accent-blue) 0.5px, transparent 0), 
+        radial-gradient(var(--accent-blue) 0.5px, transparent 0);
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
 }
 
-/* 3. 主要容器 (畫框效果) */
+/* 3. 主要容器 (半透明數據面板) */
 .container {
     width: 95%;
-    max-width: 1000px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* 半透明白，讓背景紋理透出 */
-    border: 2px solid var(--ink-black); /* 邊框像畫框 */
-    box-shadow: var(--shadow-light);
-    border-radius: 10px;
+    max-width: 1200px;
+    padding: 30px;
+    /* Glassmorphism 效果 */
+    background-color: var(--glass-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--accent-neon); /* 輕微霓虹邊緣光 */
 }
 
 /* 4. 標題與城市名稱 */
 header {
     text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 3px solid var(--ink-black);
-    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-neon);
+    padding-bottom: 15px;
+    animation: pulse-border 2s infinite alternate;
 }
 
 h1 {
-    font-family: 'Ma Shan Zheng', cursive; /* 使用可愛且具書法感的字體 */
-    font-size: 2.5em;
-    color: var(--ink-black);
-    margin-bottom: 5px;
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin: 0;
     letter-spacing: 5px;
 }
 
 #city-name {
-    font-size: 1.5em;
-    font-weight: 700;
+    font-size: 1.8em;
+    color: var(--accent-neon);
 }
 
-/* 5. 主要時段顯示 (最醒目) */
+#update-info {
+    font-size: 0.9em;
+    color: var(--accent-blue);
+    margin: 5px 0 0 0;
+}
+
+/* 5. 主要時段顯示 (數據核心區 - 醒目) */
 #main-forecast {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
-    margin-bottom: 30px;
-    background-color: var(--highlight-bg); /* 醒目背景 */
-    border: 1px dashed var(--ink-gray); /* 虛線邊框，更具書寫感 */
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    background-color: rgba(0, 119, 255, 0.2); /* 藍色透明背景 */
+    border: 3px solid var(--accent-neon);
+    border-radius: 15px;
+    box-shadow: 0 0 30px var(--accent-neon);
+    transition: all 0.3s ease-in-out;
 }
 
 #main-forecast:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    box-shadow: 0 0 50px var(--accent-neon);
+    transform: scale(1.01);
 }
 
 .main-time-text {
-    font-family: 'Ma Shan Zheng', cursive;
-    font-size: 1.8em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: var(--ink-black);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--accent-neon);
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--accent-neon); /* 霓虹文字光 */
 }
 
 .main-icon {
-    font-size: 6em; /* 大 icon */
-    margin-bottom: 10px;
-    animation: icon-float 3s ease-in-out infinite alternate; /* 動畫效果 */
+    font-size: 8em; /* 巨大 Icon */
+    margin-bottom: 15px;
+    color: var(--text-light); /* 覆蓋 emoji 預設顏色 */
+    text-shadow: 0 0 20px var(--accent-neon);
+    animation: icon-float 4s ease-in-out infinite alternate, glow 1.5s infinite alternate; /* 雙重動畫 */
 }
 
 .main-weather-text {
-    font-size: 1.6em;
-    font-weight: 700;
-    color: var(--ink-black);
-    margin-bottom: 10px;
-}
-
-.main-temp-text {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: darkred; /* 鮮明溫度 */
+    font-size: 2em;
+    font-weight: 400;
+    color: var(--text-light);
     margin-bottom: 15px;
 }
 
-.main-detail-row {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+.main-temp-text {
+    font-size: 4em;
+    font-weight: 700;
+    color: var(--accent-neon);
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px var(--accent-neon);
+    position: relative;
 }
 
 .comfort-text {
-    margin-top: 15px;
+    margin-top: 20px;
     font-style: italic;
-    color: var(--ink-gray);
-    font-family: 'Ma Shan Zheng', cursive;
+    color: var(--accent-blue);
+    font-size: 1.1em;
+    border-top: 1px dotted var(--accent-blue);
+    padding-top: 10px;
 }
 
-
-/* 6. 未來時段顯示 (區塊) */
+/* 6. 未來時段顯示 (數據陣列) */
 #future-forecasts {
     display: grid;
-    /* RWD 佈局：自動適應，最小寬度 280px */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    padding-top: 20px;
-    border-top: 2px solid var(--accent-color);
+    padding-top: 30px;
+    border-top: 1px dashed var(--accent-blue);
 }
 
 .future-block {
-    padding: 15px;
-    background-color: var(--ink-white);
-    border: 1px solid var(--ink-gray);
-    border-radius: 5px;
-    box-shadow: var(--shadow-light);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4); /* 更深的透明背景 */
+    border: 1px solid var(--accent-blue);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 119, 255, 0.5);
     text-align: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.future-block:hover {
-    transform: translateY(-5px);
-    background-color: var(--highlight-bg);
+.future-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+.future-block:hover::before {
+    left: 100%;
 }
 
 .future-time-text {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--ink-black);
-    margin-bottom: 8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--accent-neon);
+    margin-bottom: 10px;
 }
 
 .future-icon {
-    font-size: 2.5em;
-    margin-bottom: 5px;
-    animation: icon-pulse 2s infinite ease-in-out; /* 小動畫 */
+    font-size: 3.5em;
+    margin-bottom: 8px;
+    text-shadow: 0 0 5px var(--accent-neon);
+    animation: icon-pulse 1.5s infinite alternate;
 }
 
 .future-temp-text {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: darkred;
-    margin: 5px 0;
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--text-light);
+    margin: 8px 0;
 }
 
 .future-rain-text {
-    font-size: 0.9em;
-    color: blue;
+    font-size: 1em;
+    color: var(--accent-blue);
+    font-weight: 400;
 }
 
 /* 7. 載入中/錯誤訊息 */
 #loading, .error-msg {
     text-align: center;
-    padding: 50px;
-    font-size: 1.5em;
-    color: var(--ink-black);
+    padding: 60px;
+    font-size: 1.8em;
+    color: var(--accent-neon);
+    text-shadow: 0 0 5px var(--accent-neon);
+    animation: blink 1s infinite;
+}
+.error-msg {
+    color: var(--error-red);
+    text-shadow: 0 0 5px var(--error-red);
 }
 
 /* 8. 動畫定義 */
@@ -186,34 +215,40 @@ h1 {
     0% { transform: translateY(0); }
     100% { transform: translateY(-10px); }
 }
-
 @keyframes icon-pulse {
     0% { opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+@keyframes glow {
+    0% { text-shadow: 0 0 5px var(--accent-neon); }
+    100% { text-shadow: 0 0 15px var(--accent-neon), 0 0 20px var(--accent-neon); }
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+@keyframes pulse-border {
+    0% { border-color: var(--accent-neon); box-shadow: 0 0 5px var(--accent-neon); }
+    100% { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-blue); }
 }
 
 /* 9. RWD 媒體查詢 */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
+@media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 20px 10px;
     }
     h1 {
-        font-size: 2em;
-    }
-    #city-name {
-        font-size: 1.2em;
+        font-size: 2.2em;
+        letter-spacing: 3px;
     }
     .main-icon {
-        font-size: 5em;
+        font-size: 6em;
     }
     .main-temp-text {
-        font-size: 2em;
+        font-size: 3.5em;
     }
-    .main-weather-text {
-        font-size: 1.4em;
+    #future-forecasts {
+        grid-template-columns: 1fr; /* 手機上變為單欄 */
     }
 }
