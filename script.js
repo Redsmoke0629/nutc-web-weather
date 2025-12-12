@@ -32,8 +32,8 @@ function getTimePeriod(startTime) {
     const hour = date.getHours();
 
     if (hour >= 6 && hour < 12) return '🌅 數據啟動: 清晨';
-    if (hour >= 12 && hour < 18) return '🏙️ 日間核心數據';
-    if (hour >= 18 || hour < 6) return '🌃 夜間數據傳輸';
+    if (hour >= 12 && hour < 18) return '🏙️ 日間天氣數據';
+    if (hour >= 18 || hour < 6) return '🌃 夜間天氣傳輸';
     return '時段訊號';
 }
 
@@ -80,7 +80,7 @@ function renderFutureForecasts(forecasts) {
             <div class="future-icon">${getWeatherIcon(forecast.weather)}</div>
             <div class="future-weather-text">${forecast.weather}</div>
             <div class="future-temp-text">${minTemp}~${maxTemp}</div>
-            <div class="future-rain-text">💧 降雨: ${forecast.rain}</div>
+            <div class="future-rain-text">💧 降雨機率: ${forecast.rain}</div>
         `;
         futureForecastsEl.appendChild(block);
     });
@@ -110,7 +110,7 @@ async function fetchWeather() {
             const forecasts = data.forecasts.slice(0, 3); 
 
             // 1. 設置城市名稱和更新時間
-            cityNameEl.textContent = `${data.city} 數據矩陣`;
+            cityNameEl.textContent = `${data.city} 天氣數據`;
             updateInfoEl.textContent = `[系統] 氣象數據更新頻率：${data.updateTime}`;
             updateInfoEl.style.display = 'block';
             
