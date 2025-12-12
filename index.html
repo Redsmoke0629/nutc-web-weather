@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天氣預測</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="city-name">天氣預報</h1>
+        </header>
+
+        <div id="loading">... 水墨雲煙，天氣資料擷取中 ...</div>
+        <div id="error-message" class="error-msg" style="display: none;"></div>
+
+        <section id="main-forecast" style="display: none;"></section>
+
+        <section id="future-forecasts" style="display: none;"></section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

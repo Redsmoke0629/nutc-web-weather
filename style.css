@@ -1,0 +1,219 @@
+/* CSS 樣式 - 水墨畫風格與 RWD 支援 */
+
+/* 1. 變數定義：水墨畫配色 */
+:root {
+    --ink-black: #1E1E1E; /* 墨黑 */
+    --ink-gray: #6C757D; /* 淡墨灰 */
+    --ink-white: #F8F9FA; /* 宣紙白 */
+    --accent-color: #A9A9A9; /* 點綴的灰色或淺藍 */
+    --highlight-bg: #EAECEF; /* 突顯背景，像宣紙上的淡彩 */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1); /* 輕微陰影 */
+}
+
+/* 2. 網頁整體樣式 (宣紙背景) */
+body {
+    font-family: 'Noto Serif TC', serif; /* 主要使用水墨風格字體 */
+    background-color: var(--ink-white);
+    color: var(--ink-black);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.6;
+    /* 模擬宣紙的紋理 */
+    background-image: radial-gradient(var(--ink-gray) 1px, transparent 0);
+    background-size: 40px 40px; 
+}
+
+/* 3. 主要容器 (畫框效果) */
+.container {
+    width: 95%;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明白，讓背景紋理透出 */
+    border: 2px solid var(--ink-black); /* 邊框像畫框 */
+    box-shadow: var(--shadow-light);
+    border-radius: 10px;
+}
+
+/* 4. 標題與城市名稱 */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--ink-black);
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Ma Shan Zheng', cursive; /* 使用可愛且具書法感的字體 */
+    font-size: 2.5em;
+    color: var(--ink-black);
+    margin-bottom: 5px;
+    letter-spacing: 5px;
+}
+
+#city-name {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* 5. 主要時段顯示 (最醒目) */
+#main-forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: var(--highlight-bg); /* 醒目背景 */
+    border: 1px dashed var(--ink-gray); /* 虛線邊框，更具書寫感 */
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+#main-forecast:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.main-time-text {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--ink-black);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.main-icon {
+    font-size: 6em; /* 大 icon */
+    margin-bottom: 10px;
+    animation: icon-float 3s ease-in-out infinite alternate; /* 動畫效果 */
+}
+
+.main-weather-text {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--ink-black);
+    margin-bottom: 10px;
+}
+
+.main-temp-text {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: darkred; /* 鮮明溫度 */
+    margin-bottom: 15px;
+}
+
+.main-detail-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.comfort-text {
+    margin-top: 15px;
+    font-style: italic;
+    color: var(--ink-gray);
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+
+/* 6. 未來時段顯示 (區塊) */
+#future-forecasts {
+    display: grid;
+    /* RWD 佈局：自動適應，最小寬度 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--accent-color);
+}
+
+.future-block {
+    padding: 15px;
+    background-color: var(--ink-white);
+    border: 1px solid var(--ink-gray);
+    border-radius: 5px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.future-block:hover {
+    transform: translateY(-5px);
+    background-color: var(--highlight-bg);
+}
+
+.future-time-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--ink-black);
+    margin-bottom: 8px;
+}
+
+.future-icon {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    animation: icon-pulse 2s infinite ease-in-out; /* 小動畫 */
+}
+
+.future-temp-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: darkred;
+    margin: 5px 0;
+}
+
+.future-rain-text {
+    font-size: 0.9em;
+    color: blue;
+}
+
+/* 7. 載入中/錯誤訊息 */
+#loading, .error-msg {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.5em;
+    color: var(--ink-black);
+}
+
+/* 8. 動畫定義 */
+@keyframes icon-float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes icon-pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+/* 9. RWD 媒體查詢 */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #city-name {
+        font-size: 1.2em;
+    }
+    .main-icon {
+        font-size: 5em;
+    }
+    .main-temp-text {
+        font-size: 2em;
+    }
+    .main-weather-text {
+        font-size: 1.4em;
+    }
+}
